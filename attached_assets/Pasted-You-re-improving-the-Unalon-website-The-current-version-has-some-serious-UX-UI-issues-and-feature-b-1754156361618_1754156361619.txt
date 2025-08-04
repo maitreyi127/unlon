@@ -1,0 +1,91 @@
+You're improving the Unalon website. The current version has some serious UX/UI issues and feature bugs that need to be addressed. Please make the following changes:
+
+🔁 GENERAL UI/UX FIXES
+Ads Redesign
+
+Replace current colorful ads with subtle, elegant "story-style" ad-notifications.
+
+Ads should blend with the app's aesthetic — minimalist, pastel-based, unobtrusive.
+
+Inject these ads organically between event posts, not in fixed banners.
+
+Mark them as "Sponsored" in a cool, non-intrusive font and position.
+
+Header Consistency (My Plans Page)
+
+On the My Plans page, replace the heading "Unalon" with "My Plans" to avoid redundant titles and improve clarity.
+
+Search Button Fix
+
+Make sure the search bar is functional. It should:
+
+Allow filtering by location, interest, or username.
+
+Provide instant suggestions in dropdown.
+
+Include a loading animation if necessary.
+
+✍️ CREATE FLOW FIXES
+Auto-Accept Button Logic
+
+Show the "Auto-Accept" toggle/button only after the user enters the number of participants.
+
+Create Event Popup
+
+Transform the “Create” page into a modal popup without a full page header.
+
+Keep it clean, compact, floating with a blur or fade background effect.
+
+Ensure smooth animations.
+
+Sponsored Places List
+
+In the create modal’s “Select a Place” dropdown, list a few sponsored places at the top.
+
+Clearly label them “Sponsored” but style it aesthetically to match Unalon’s theme (e.g., faint italic with a star icon).
+
+💬 CHAT & PROFILE ENHANCEMENTS
+Stories on Chat Page
+
+On top of the chat window, display a horizontal stories bar showing avatars of friends who’ve posted recently.
+
+Clicking on a story shows event memories, hangout recaps, or ads from friends’ fav spots.
+
+Requested Event Logic Fix
+
+Events should not appear as ‘Requested’ by default.
+
+After clicking "Request", it changes to "Requested".
+
+Clicking "Requested" again should do nothing to avoid unintentional toggling.
+
+Profile Icon Relocation
+
+Move the profile icon to the top navigation bar, next to the notifications bell, for intuitive access.
+
+🔔 NOTIFICATION PAGE FIXES
+Notifications Page Functionality
+
+Fix the notifications page—it currently doesn’t load or respond.
+
+It should show:
+
+Friend requests
+
+Event invites
+
+Accepted applications
+
+Stories tagged by friends
+
+Ads from sponsored places
+
+Ad Integration in Notifs
+
+Blend in ads for cafes or popular hangout spots into the notifications feed.
+
+Style them like friendly messages, e.g., “🍰 Riya just went to Mocha Mojo! Wanna join her next time?”
+
+Subtle CTA buttons like "Check it out" or "Add to wishlist".
+
+🔚 Final polish: Keep animations smooth, transitions intuitive, and visuals cohesive with Unalon’s theme: ethereal, soft, clean, and next-gen social.

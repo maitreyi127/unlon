@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Plus+Jakarta+Sans:wght@400&display=swap"
+    />
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      .button-effect {
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="relative flex min-h-screen flex-col bg-white overflow-x-hidden"
+      style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
+    >
+      <!-- Centered heading content -->
+      <div class="flex flex-col flex-grow items-center justify-center text-center px-4">
+        <div class="max-w-[480px] mx-auto">
+          <h2
+            class="text-[#1c0d14] text-[64px] font-black leading-none"
+            style='font-family: "Playfair Display", serif;'
+          >
+            unalon
+          </h2>
+          <h2
+            class="text-[#1c0d14] tracking-widest text-[15px] font-light uppercase mt-0.5 ml-12"
+            style='font-family: "Plus Jakarta Sans", sans-serif; letter spacing: 0.2em;'
+          >
+            NEVER DO IT ALON
+          </h2>
+        </div>
+      </div>
+
+      <!-- Button and Terms section -->
+      <div class="pb-10">
+        <div class="flex justify-center">
+          <div class="flex flex-1 gap-3 max-w-[480px] flex-col items-stretch px-4 py-3 mx-auto">
+            <!-- Apple button is now first -->
+            <button
+              id="appleButton"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-black text-[#fcf8fa] text-base font-bold leading-normal tracking-[0.015em] w-full
+              button-effect hover:opacity-80 active:opacity-60 active:scale-[0.98]"
+            >
+              <span class="truncate">Continue with Apple</span>
+            </button>
+            <!-- Google button is now second -->
+            <button
+              id="googleButton"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-blue-600 text-[#fcf8fa] text-base font-bold leading-normal tracking-[0.015em] w-full
+              button-effect hover:opacity-80 active:opacity-60 active:scale-[0.98]"
+            >
+              <span class="truncate">Continue with Google</span>
+            </button>
+            <button
+              id="emailPhoneButton"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-black text-[#fcf8fa] text-base font-bold leading-normal tracking-[0.015em] w-full
+              button-effect hover:opacity-80 active:opacity-60 active:scale-[0.98]"
+            >
+              <span class="truncate">Continue with Email/Phone</span>
+            </button>
+          </div>
+        </div>
+        <p class="text-black text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center underline">
+          By continuing, you agree to our Terms and Conditions
+        </p>
+        <div class="h-5 bg-white"></div>
+      </div>
+    </div>
+  </body>
+</html>

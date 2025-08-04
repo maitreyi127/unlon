@@ -1,0 +1,1199 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unalon - Never Do It Alone</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-smoothing: grayscale;
+            min-height: max(884px, 100dvh);
+            background-color: #FFFFFF;
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .unalon-logo {
+            font-family: 'Playfair Display', serif;
+        }
+        .button-effect {
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: flex;
+        }
+        .loader {
+            border: 4px solid #F5F5F5;
+            border-top: 4px solid #333333;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .radio-selected {
+            background-color: #000000;
+            border-color: #000000;
+        }
+        .radio-selected p {
+            color: #FFFFFF;
+        }
+        .radio-selected:hover {
+            opacity: 0.8;
+            background-color: #000000;
+            border-color: #000000;
+        }
+        .radio-selected:hover p {
+            color: #FFFFFF;
+        }
+        .vibe-selected {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+        .vibe-selected:hover {
+            opacity: 0.8;
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+        .visibility-label:hover p,
+        .accepting-requests-label:hover p {
+            color: #FFFFFF;
+        }
+        .static-image-placeholder {
+            height: 200px;
+            width: 100%;
+            border-radius: 0.75rem;
+            object-fit: cover;
+        }
+        .visibility-label input[type="radio"],
+        .accepting-requests-label input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+            position: absolute;
+            clip: rect(0 0 0 0);
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unalon: {
+                            50: '#FFFFFF',
+                            100: '#FFFFFF',
+                            200: '#FFFFFF',
+                            300: '#BBBBBB',
+                            400: '#000000',
+                            500: '#000000',
+                            600: '#000000',
+                            700: '#000000',
+                            800: '#000000',
+                            900: '#000000'
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-unalon-50">
+
+<!-- Login Page -->
+<div id="loginPage" class="page active relative flex min-h-screen flex-col bg-white overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="flex flex-col flex-grow items-center justify-center text-center px-4">
+        <div class="max-w-[480px] mx-auto">
+            <h2 class="text-[#1c0d14] text-[64px] font-black leading-none unalon-logo">unalon</h2>
+            <h2 class="text-[#1c0d14] tracking-widest text-[15px] font-light uppercase mt-0.5 ml-12" style='font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: 0.2em;'>NEVER DO IT ALONE</h2>
+        </div>
+    </div>
+    <div class="pb-10">
+        <div class="flex justify-center">
+            <div class="flex flex-1 gap-3 max-w-[480px] flex-col items-stretch px-4 py-3 mx-auto">
+                <button onclick="showHome()" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-black text-[#fcf8fa] text-base font-bold leading-normal tracking-[0.015em] w-full button-effect hover:opacity-80 active:opacity-60 active:scale-[0.98]">
+                    <span class="truncate">Continue with Apple</span>
+                </button>
+                <button onclick="showHome()" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-blue-600 text-[#fcf8fa] text-base font-bold leading-normal tracking-[0.015em] w-full button-effect hover:opacity-80 active:opacity-60 active:scale-[0.98]">
+                    <span class="truncate">Continue with Google</span>
+                </button>
+                <button onclick="showHome()" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-black text-[#fcf8fa] text-base font-bold leading-normal tracking-[0.015em] w-full button-effect hover:opacity-80 active:opacity-60 active:scale-[0.98]">
+                    <span class="truncate">Continue with Email/Phone</span>
+                </button>
+            </div>
+        </div>
+        <p class="text-black text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center underline">
+            By continuing, you agree to our Terms and Conditions
+        </p>
+        <div class="h-5 bg-white"></div>
+    </div>
+</div>
+
+<!-- Home Page -->
+<div id="homePage" class="page max-w-md mx-auto bg-unalon-100 relative min-h-screen flex flex-col">
+    <header class="flex justify-between items-center p-4 border-b border-unalon-300 bg-unalon-100">
+        <span class="font-black text-2xl text-unalon-900 unalon-logo">unalon</span>
+        <div class="flex items-center space-x-4">
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">search</span>
+            </button>
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">notifications_none</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="p-4 flex-grow overflow-y-auto bg-unalon-100 pb-20">
+        <div class="flex space-x-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+            <button class="bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">Location</button>
+            <button class="bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">Time</button>
+            <button class="bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">Activity</button>
+            <button class="flex items-center space-x-1 bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">
+                <span class="material-icons text-unalon-700">sort</span>
+                <span class="font-medium">Sort by</span>
+                <span class="material-icons text-unalon-700">expand_more</span>
+            </button>
+        </div>
+
+        <div class="space-y-6" id="activity-cards-container">
+            <!-- Social activities group cards -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-unalon-900">Coffee & Conversations</h2>
+                        <p class="text-sm text-unalon-800 mb-1">☕️ Connect with like-minded people over great coffee!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Today, 2:00 PM · Central Coffee House</p>
+                    </div>
+                    <!-- Group socializing at coffee shop -->
+                    <img alt="A diverse group of young professionals socializing and laughing together at a trendy coffee shop" class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://pixabay.com/get/g7ba7cfac16a7c9d68bbd14098c812039a354ac2ff822f1ffe5f0591db8c13f7e0ef28673daeee61c02ca3d3b1efe2e125f6db279356d0d2d603b4715413661cd_1280.jpg"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Social</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Networking</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <!-- Portrait of a friendly woman host -->
+                        <img alt="Portrait of a confident young woman with a warm smile" class="w-10 h-10 rounded-full object-cover" src="https://pixabay.com/get/g02683eb46ba8d98c254177ad16a187a54bdd39bd8841b911ba4e4f4f76bb497d6a7205b1848d4d7e2b2038e833da96f2db50350ae4c5ca807f31b93cf5131f58_1280.jpg"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Sarah</p>
+                            <p class="text-sm text-unalon-800">4 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <!-- Group of participant avatars -->
+                        <img alt="Avatar of a woman with brown hair" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                        <img alt="Avatar of a man with glasses" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                        <img alt="Avatar of a woman with red hair" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-unalon-900">Urban Photography Walk</h2>
+                        <p class="text-sm text-unalon-800 mb-1">📸 Capture the city's hidden gems with fellow photographers!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Tomorrow, 10:00 AM · Downtown District</p>
+                    </div>
+                    <!-- Urban lifestyle photography -->
+                    <img alt="Photographers exploring vibrant city streets with cameras, capturing urban architecture and street art" class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Creative</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Urban</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <!-- Portrait of a photographer host -->
+                        <img alt="Portrait of a creative young man with a camera around his neck" class="w-10 h-10 rounded-full object-cover" src="https://pixabay.com/get/g9c00a614f5b54a6d4cdd785216ecd4f8471bb9815d517437ad5eb52668916ba52c257b5890629769c85a8aff08578086a57f3def3da41b5fabacbc9a62cd1078_1280.jpg"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Alex</p>
+                            <p class="text-sm text-unalon-800">6 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a creative woman" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                        <img alt="Avatar of a young photographer" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-unalon-900">Mountain Hiking Adventure</h2>
+                        <p class="text-sm text-unalon-800 mb-1">🥾 Challenge yourself with stunning mountain views!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Saturday, 8:00 AM · Eagle Peak Trail</p>
+                    </div>
+                    <!-- Outdoor hiking activity -->
+                    <img alt="Group of hikers with backpacks trekking up a scenic mountain trail with panoramic valley views" class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Adventure</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Fitness</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <!-- Portrait of an outdoor enthusiast -->
+                        <img alt="Portrait of an athletic woman with outdoor hiking gear" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Maya</p>
+                            <p class="text-sm text-unalon-800">3 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of an adventurous man" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                        <img alt="Avatar of a nature lover" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-unalon-900">Book Club Meetup</h2>
+                        <p class="text-sm text-unalon-800 mb-1">📚 Discuss this month's selection over coffee and pastries!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Sunday, 3:00 PM · Literary Cafe</p>
+                    </div>
+                    <!-- People meeting over coffee for book discussion -->
+                    <img alt="Small group of book lovers having an engaging discussion over coffee with books on the table" class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://pixabay.com/get/gc9211bbf23a6931325d3624c69261aed72bdc467c8363b5e796f99ea015a33d2c742b7f1e6b60369c0d4b7b988923672ce1c115f8f89c4330d88942d154b0817_1280.jpg"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Intellectual</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Cozy</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <!-- Portrait of a book club organizer -->
+                        <img alt="Portrait of an intellectual woman with glasses holding a book" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1502810365585-56ffa361fdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Emma</p>
+                            <p class="text-sm text-unalon-800">2 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a literary enthusiast" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://pixabay.com/get/gdaf821bf441e9d2d6b55b5faedaea8af6a778dc52ca89c6b8801670acaba509aa66cda27acb145af61b596cb36a46b15acc95bc989da60e6a2e328b20ea96a21_1280.jpg"/>
+                        <img alt="Avatar of a reading group member" class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1569124589354-615739ae007b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-unalon-100 border-t border-unalon-300 z-10">
+        <div class="flex justify-around items-center py-2">
+            <a onclick="showHome()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-unalon-200 text-unalon-700 font-bold shadow-md transform scale-105 cursor-pointer">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a onclick="showMyPlans()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">event_note</span>
+                <span class="text-xs mt-1">My Plans</span>
+            </a>
+            <a onclick="showCreate()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">add_circle_outline</span>
+                <span class="text-xs mt-1">Create</span>
+            </a>
+            <a onclick="showChat()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">chat_bubble_outline</span>
+                <span class="text-xs mt-1">Chat</span>
+            </a>
+            <a onclick="showProfile()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">person_outline</span>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </footer>
+</div>
+
+<!-- My Plans Page -->
+<div id="myPlansPage" class="page max-w-md mx-auto bg-unalon-100 relative min-h-screen flex flex-col">
+    <header class="fixed top-0 left-0 right-0 max-w-md mx-auto flex justify-between items-center p-4 border-b border-unalon-300 bg-unalon-100 z-20">
+        <span class="font-black text-2xl text-unalon-900 unalon-logo">unalon</span>
+        <div class="flex items-center space-x-4">
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">search</span>
+            </button>
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">notifications_none</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="p-4 flex-grow overflow-y-auto bg-unalon-100 pt-20 pb-20">
+        <h1 class="text-xl font-bold text-unalon-900 mb-6">My Plans</h1>
+
+        <div class="flex border-b border-unalon-300 mb-6">
+            <button id="upcomingTab" class="flex-1 py-3 text-center font-semibold text-unalon-900 border-b-2 border-unalon-900 transition-colors duration-200">Upcoming</button>
+            <button id="pastTab" class="flex-1 py-3 text-center font-semibold text-unalon-700 border-b-2 border-transparent hover:border-unalon-300 transition-colors duration-200">Past</button>
+        </div>
+
+        <div id="upcomingContent" class="space-y-6">
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-unalon-900">Today</h2>
+                <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center hover:shadow-md transition-shadow duration-200">
+                    <!-- Coffee meeting image -->
+                    <img alt="Cozy cafe interior with people enjoying coffee and conversation" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                    <div>
+                        <h3 class="text-base font-semibold text-unalon-900">Coffee & Conversations</h3>
+                        <p class="text-xs text-unalon-700 mt-1">2:00 PM · Central Coffee House</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-unalon-900">Tomorrow</h2>
+                <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center hover:shadow-md transition-shadow duration-200">
+                    <!-- Urban lifestyle activity -->
+                    <img alt="Young professionals walking and talking in a vibrant city environment" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://pixabay.com/get/g07ba45ad3e8da1689e98e55f6ca2fbdb453f0e9d98288fc0c183b678463e09272ab444d1af028419a0dfcac7ab1cbff0af7f7f3cfe248dee99115a7e173f81c5_1280.jpg"/>
+                    <div>
+                        <h3 class="text-base font-semibold text-unalon-900">Urban Photography Walk</h3>
+                        <p class="text-xs text-unalon-700 mt-1">10:00 AM · Downtown District</p>
+                    </div>
+                </div>
+                <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center hover:shadow-md transition-shadow duration-200">
+                    <!-- Outdoor activity - evening walk -->
+                    <img alt="People enjoying an evening outdoor activity in an urban park setting" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                    <div>
+                        <h3 class="text-base font-semibold text-unalon-900">Evening Walk & Talk</h3>
+                        <p class="text-xs text-unalon-700 mt-1">6:00 PM · Riverside Park</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-unalon-900">This Week</h2>
+                <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center hover:shadow-md transition-shadow duration-200">
+                    <!-- Outdoor hiking activity -->
+                    <img alt="Group of friends with backpacks hiking together on a scenic mountain trail" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                    <div>
+                        <h3 class="text-base font-semibold text-unalon-900">My Hosted: Mountain Hike</h3>
+                        <p class="text-xs text-unalon-700 mt-1">Saturday, 8:00 AM · Eagle Peak Trail</p>
+                    </div>
+                </div>
+                <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center hover:shadow-md transition-shadow duration-200">
+                    <!-- People meeting for book club -->
+                    <img alt="Book club members sitting around a table with books and coffee cups, engaged in discussion" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                    <div>
+                        <h3 class="text-base font-semibold text-unalon-900">Book Club Meetup</h3>
+                        <p class="text-xs text-unalon-700 mt-1">Sunday, 3:00 PM · Literary Cafe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pastContent" class="space-y-6 hidden">
+            <h2 class="text-lg font-bold text-unalon-900">Past Events</h2>
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center opacity-60">
+                <!-- Social activity group -->
+                <img alt="Friends enjoying a social gathering at a trendy restaurant" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                <div>
+                    <h3 class="text-base font-semibold text-unalon-900">Wine Tasting Social</h3>
+                    <p class="text-xs text-unalon-700 mt-1">Last Week · Urban Winery</p>
+                </div>
+            </div>
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-3 border border-unalon-300 flex items-center opacity-60">
+                <!-- Social activities group -->
+                <img alt="Group of people playing board games and laughing together in a cozy setting" class="w-16 h-16 rounded-lg object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                <div>
+                    <h3 class="text-base font-semibold text-unalon-900">Game Night</h3>
+                    <p class="text-xs text-unalon-700 mt-1">Last Month · Local Game Cafe</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-unalon-100 border-t border-unalon-300 z-10">
+        <div class="flex justify-around items-center py-2">
+            <a onclick="showHome()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a onclick="showMyPlans()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-unalon-200 text-unalon-700 font-bold shadow-md transform scale-105 cursor-pointer">
+                <span class="material-icons">event_note</span>
+                <span class="text-xs mt-1">My Plans</span>
+            </a>
+            <a onclick="showCreate()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">add_circle_outline</span>
+                <span class="text-xs mt-1">Create</span>
+            </a>
+            <a onclick="showChat()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">chat_bubble_outline</span>
+                <span class="text-xs mt-1">Chat</span>
+            </a>
+            <a onclick="showProfile()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">person_outline</span>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </footer>
+</div>
+
+<!-- Create Page -->
+<div id="createPage" class="page relative flex size-full min-h-screen flex-col bg-[#FFFFFF] justify-between group/design-root overflow-x-hidden">
+    <div>
+        <div class="flex items-center bg-[#FFFFFF] p-4 pb-2 justify-between max-w-[480px] mx-auto">
+            <div onclick="showHome()" class="text-[#1A1A1A] flex size-12 shrink-0 items-center cursor-pointer" data-icon="X" data-size="24px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+                </svg>
+            </div>
+            <h2 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">New activity</h2>
+        </div>
+
+        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
+            <label class="flex flex-col min-w-40 flex-1">
+                <input id="activity-input" placeholder="What do you want to do? 👀" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1A1A1A] focus:outline-0 focus:ring-0 border-none bg-[#F5F5F5] focus:border-none h-14 placeholder:text-[#888888] p-4 text-base font-normal leading-normal" value="" />
+            </label>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">When</h3>
+        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
+            <label class="flex flex-col min-w-40 flex-1">
+                <input type="datetime-local" id="datetime-input" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1A1A1A] focus:outline-0 focus:ring-0 border-none bg-[#F5F5F5] focus:border-none h-14 placeholder:text-[#888888] p-4 text-base font-normal leading-normal" />
+            </label>
+        </div>
+        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
+            <label class="flex flex-col min-w-40 flex-1">
+                <input type="text" id="duration-input" placeholder="Duration (e.g., 2 hours, 30 mins)" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1A1A1A] focus:outline-0 focus:ring-0 border-none bg-[#F5F5F5] focus:border-none h-14 placeholder:text-[#888888] p-4 text-base font-normal leading-normal" value="" />
+            </label>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">Description</h3>
+        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
+            <label class="flex flex-col min-w-40 flex-1">
+                <textarea id="description-textarea" placeholder="Add a description" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1A1A1A] focus:outline-0 focus:ring-0 border-none bg-[#F5F5F5] focus:border-none min-h-36 placeholder:text-[#888888] p-4 text-base font-normal leading-normal"></textarea>
+            </label>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">How many</h3>
+        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
+            <label class="flex flex-col min-w-40 flex-1">
+                <input type="number" id="max-participants-input" placeholder="Max number of participants" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1A1A1A] focus:outline-0 focus:ring-0 border-none bg-[#F5F5F5] focus:border-none h-14 placeholder:text-[#888888] p-4 text-base font-normal leading-normal" value="" min="1" />
+            </label>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">Where</h3>
+        <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3 mx-auto">
+            <label class="flex flex-col min-w-40 flex-1">
+                <input type="text" id="location-input" placeholder="Location" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1A1A1A] focus:outline-0 focus:ring-0 border-none bg-[#F5F5F5] focus:border-none h-14 placeholder:text-[#888888] p-4 text-base font-normal leading-normal" value="" />
+            </label>
+        </div>
+        <div class="flex px-4 py-3 max-w-[480px] mx-auto">
+            <img class="static-image-placeholder" src="https://placehold.co/600x400/F5F5F5/888888?text=San+Francisco+Map" alt="Map of San Francisco" />
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">Vibe</h3>
+        <div class="flex gap-3 p-3 flex-wrap pr-4 max-w-[480px] mx-auto" id="vibe-options-container">
+            <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 vibe-option cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]" data-vibe="Casual">
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Casual</p>
+            </div>
+            <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 vibe-option cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]" data-vibe="Fun">
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Fun</p>
+            </div>
+            <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 vibe-option cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]" data-vibe="Relaxed">
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Relaxed</p>
+            </div>
+            <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 vibe-option cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]" data-vibe="Adventurous">
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Adventurous</p>
+            </div>
+            <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 vibe-option cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]" data-vibe="Social">
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Social</p>
+            </div>
+        </div>
+        <div class="flex px-4 py-3 max-w-[480px] mx-auto">
+            <button id="suggest-vibes-button" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#F5F5F5] text-[#1A1A1A] text-sm font-bold leading-normal tracking-[0.015em] transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]">
+                <span class="truncate">Suggest More Vibes (AI)</span>
+            </button>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">Images</h3>
+        <div class="flex flex-col p-4 max-w-[480px] mx-auto">
+            <div id="image-preview" class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl object-cover flex items-center justify-center mb-6 hidden" style='background-image: none; background-color: #F5F5F5;'></div>
+            <div class="flex flex-col gap-3">
+                <button id="upload-image-button" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-[#F5F5F5] text-[#1A1A1A] text-base font-bold leading-normal tracking-[0.015em] transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]">
+                    <span class="truncate">Upload Image</span>
+                </button>
+                <button id="ai-image-button" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-[#F5F5F5] text-[#1A1A1A] text-base font-bold leading-normal tracking-[0.015em] transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-[#1A1A1A] hover:text-[#FFFFFF]">
+                    <span class="truncate">Generate with AI</span>
+                </button>
+            </div>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">Visibility</h3>
+        <div class="flex gap-3 p-3 flex-wrap pr-4 max-w-[480px] mx-auto">
+            <label class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 cursor-pointer transition-all duration-200 hover:bg-[#1A1A1A] hover:text-[#FFFFFF] visibility-label">
+                <input type="radio" name="visibility" value="public" class="sr-only" />
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Public</p>
+            </label>
+            <label class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 cursor-pointer transition-all duration-200 hover:bg-[#1A1A1A] hover:text-[#FFFFFF] visibility-label">
+                <input type="radio" name="visibility" value="friends" class="sr-only" />
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Friends only</p>
+            </label>
+        </div>
+
+        <h3 class="text-[#1A1A1A] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4 max-w-[480px] mx-auto">Accepting requests</h3>
+        <div class="flex gap-3 p-3 flex-wrap pr-4 max-w-[480px] mx-auto">
+            <label class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 cursor-pointer transition-all duration-200 hover:bg-[#1A1A1A] hover:text-[#FFFFFF] accepting-requests-label">
+                <input type="radio" name="accepting" value="automatic" class="sr-only" />
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Automatic</p>
+            </label>
+            <label class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#F5F5F5] pl-4 pr-4 cursor-pointer transition-all duration-200 hover:bg-[#1A1A1A] hover:text-[#FFFFFF] accepting-requests-label">
+                <input type="radio" name="accepting" value="manual" class="sr-only" />
+                <p class="text-[#1A1A1A] text-sm font-medium leading-normal">Manual approval</p>
+            </label>
+        </div>
+    </div>
+
+    <div class="flex px-4 py-3 max-w-[480px] mx-auto">
+        <button onclick="showHome()" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-[#000000] text-[#FFFFFF] text-base font-bold leading-normal tracking-[0.015em] w-full transition-all duration-200 hover:scale-105 active:scale-95">
+            <span class="truncate">Create Activity</span>
+        </button>
+    </div>
+    <div class="h-5 bg-[#FFFFFF]"></div>
+</div>
+
+<!-- Chat Page -->
+<div id="chatPage" class="page max-w-md mx-auto bg-unalon-100 relative min-h-screen flex flex-col">
+    <header class="flex justify-between items-center p-4 border-b border-unalon-300 bg-unalon-100">
+        <span class="font-black text-2xl text-unalon-900 unalon-logo">unalon</span>
+        <div class="flex items-center space-x-4">
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">search</span>
+            </button>
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">edit</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="p-4 flex-grow overflow-y-auto bg-unalon-100 pb-20">
+        <h1 class="text-xl font-bold text-unalon-900 mb-6">Messages</h1>
+
+        <div class="space-y-3">
+            <!-- Chat conversation cards -->
+            <div onclick="openChatConversation('Sarah')" class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <div class="flex items-center">
+                    <!-- Portrait of Sarah from coffee group -->
+                    <img alt="Portrait of Sarah, a friendly woman who organizes coffee meetups" class="w-12 h-12 rounded-full object-cover flex-shrink-0 mr-3" src="https://pixabay.com/get/gdbc663fbc03c026939b4abd719f5655c138b8b4092fe2a0f95688a0fdb359638977329c5c3abd12eeef4063f880d781dd878b348cc236966ee58514163666b69_1280.jpg"/>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-base font-semibold text-unalon-900">Sarah</h3>
+                            <span class="text-xs text-unalon-700">2m</span>
+                        </div>
+                        <p class="text-sm text-unalon-800 mt-1">Looking forward to coffee later! ☕️</p>
+                    </div>
+                    <div class="w-2 h-2 bg-unalon-900 rounded-full ml-2"></div>
+                </div>
+            </div>
+
+            <div onclick="openChatConversation('Alex')" class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <div class="flex items-center">
+                    <!-- Portrait of Alex from photography walk -->
+                    <img alt="Portrait of Alex, a creative photographer who leads urban photo walks" class="w-12 h-12 rounded-full object-cover flex-shrink-0 mr-3" src="https://pixabay.com/get/ge6927add6514a9a716fe4f817ae3b83cfc4d8a773a5f8f41252914689766d15be6d64208aa509f56e35077f8e1ec47062ba4241deb11a641aac696f9a2c1954a_1280.jpg"/>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-base font-semibold text-unalon-900">Alex</h3>
+                            <span class="text-xs text-unalon-700">15m</span>
+                        </div>
+                        <p class="text-sm text-unalon-800 mt-1">Bring your camera tomorrow! The lighting should be perfect</p>
+                    </div>
+                </div>
+            </div>
+
+            <div onclick="openChatConversation('Maya')" class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <div class="flex items-center">
+                    <!-- Portrait of Maya from hiking group -->
+                    <img alt="Portrait of Maya, an athletic woman who organizes outdoor hiking adventures" class="w-12 h-12 rounded-full object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-base font-semibold text-unalon-900">Maya</h3>
+                            <span class="text-xs text-unalon-700">1h</span>
+                        </div>
+                        <p class="text-sm text-unalon-800 mt-1">Weather looks great for Saturday's hike! 🥾</p>
+                    </div>
+                </div>
+            </div>
+
+            <div onclick="openChatConversation('Emma')" class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <div class="flex items-center">
+                    <!-- Portrait of Emma from book club -->
+                    <img alt="Portrait of Emma, an intellectual woman who runs the local book club" class="w-12 h-12 rounded-full object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1502810365585-56ffa361fdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400"/>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-base font-semibold text-unalon-900">Emma</h3>
+                            <span class="text-xs text-unalon-700">3h</span>
+                        </div>
+                        <p class="text-sm text-unalon-800 mt-1">Don't forget to finish chapter 5 before Sunday!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group chat -->
+            <div onclick="openChatConversation('Coffee Group')" class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <div class="flex items-center">
+                    <!-- Group chat icon with multiple people -->
+                    <div class="w-12 h-12 rounded-full bg-unalon-900 flex items-center justify-center flex-shrink-0 mr-3">
+                        <span class="material-icons text-white text-lg">group</span>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-base font-semibold text-unalon-900">Coffee Group</h3>
+                            <span class="text-xs text-unalon-700">1d</span>
+                        </div>
+                        <p class="text-sm text-unalon-800 mt-1">James: Thanks for organizing everyone!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-unalon-100 border-t border-unalon-300 z-10">
+        <div class="flex justify-around items-center py-2">
+            <a onclick="showHome()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a onclick="showMyPlans()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">event_note</span>
+                <span class="text-xs mt-1">My Plans</span>
+            </a>
+            <a onclick="showCreate()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">add_circle_outline</span>
+                <span class="text-xs mt-1">Create</span>
+            </a>
+            <a onclick="showChat()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-unalon-200 text-unalon-700 font-bold shadow-md transform scale-105 cursor-pointer">
+                <span class="material-icons">chat_bubble_outline</span>
+                <span class="text-xs mt-1">Chat</span>
+            </a>
+            <a onclick="showProfile()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer">
+                <span class="material-icons">person_outline</span>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </footer>
+</div>
+
+<!-- Chat Conversation View -->
+<div id="chatConversationPage" class="page max-w-md mx-auto bg-unalon-100 relative min-h-screen flex flex-col">
+    <header class="flex items-center p-4 border-b border-unalon-300 bg-unalon-100">
+        <button onclick="showChat()" class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out mr-3">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <div class="flex items-center flex-grow">
+            <img id="conversationAvatar" alt="User avatar" class="w-10 h-10 rounded-full object-cover mr-3" src=""/>
+            <div>
+                <h2 id="conversationName" class="text-lg font-semibold text-unalon-900"></h2>
+                <p class="text-sm text-unalon-700">Online</p>
+            </div>
+        </div>
+        <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+            <span class="material-icons">more_vert</span>
+        </button>
+    </header>
+
+    <main class="flex-grow overflow-y-auto bg-unalon-100 p-4 pb-20 space-y-4">
+        <!-- Messages will be dynamically populated -->
+        <div id="messagesContainer" class="space-y-4">
+            <!-- Sample messages for Sarah -->
+            <div id="sarahMessages" class="conversation-messages hidden">
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Hey! Really excited about the coffee meetup today ☕️</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">10:30 AM</span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <div class="bg-unalon-900 rounded-2xl rounded-br-lg p-3 max-w-xs">
+                        <p class="text-sm text-white">Me too! I'll be there at 2 PM sharp</p>
+                        <span class="text-xs text-gray-300 mt-1 block">10:32 AM</span>
+                    </div>
+                </div>
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Perfect! I've reserved a nice corner table for our group</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">10:35 AM</span>
+                    </div>
+                </div>
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Looking forward to coffee later! ☕️</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">2 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample messages for Alex -->
+            <div id="alexMessages" class="conversation-messages hidden">
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Tomorrow's photography walk is going to be amazing! 📸</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">Yesterday</span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <div class="bg-unalon-900 rounded-2xl rounded-br-lg p-3 max-w-xs">
+                        <p class="text-sm text-white">I can't wait! Any specific spots you want to hit?</p>
+                        <span class="text-xs text-gray-300 mt-1 block">Yesterday</span>
+                    </div>
+                </div>
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Bring your camera tomorrow! The lighting should be perfect</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">15 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample messages for Maya -->
+            <div id="mayaMessages" class="conversation-messages hidden">
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Just checked the forecast for Saturday - it's going to be perfect hiking weather! 🌤️</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">2 hours ago</span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <div class="bg-unalon-900 rounded-2xl rounded-br-lg p-3 max-w-xs">
+                        <p class="text-sm text-white">Awesome! What time should we meet?</p>
+                        <span class="text-xs text-gray-300 mt-1 block">2 hours ago</span>
+                    </div>
+                </div>
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Weather looks great for Saturday's hike! 🥾</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample messages for Emma -->
+            <div id="emmaMessages" class="conversation-messages hidden">
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">How are you finding the book so far? I'm loving the character development!</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">Yesterday</span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <div class="bg-unalon-900 rounded-2xl rounded-br-lg p-3 max-w-xs">
+                        <p class="text-sm text-white">It's really engaging! The plot twists are unexpected</p>
+                        <span class="text-xs text-gray-300 mt-1 block">Yesterday</span>
+                    </div>
+                </div>
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900">Don't forget to finish chapter 5 before Sunday!</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">3 hours ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample messages for Coffee Group -->
+            <div id="coffee groupMessages" class="conversation-messages hidden">
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900"><strong>James:</strong> Thanks for organizing everyone!</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">1 day ago</span>
+                    </div>
+                </div>
+                <div class="flex justify-start">
+                    <div class="bg-unalon-50 rounded-2xl rounded-bl-lg p-3 max-w-xs border border-unalon-300">
+                        <p class="text-sm text-unalon-900"><strong>Sarah:</strong> My pleasure! Looking forward to our next meetup</p>
+                        <span class="text-xs text-unalon-700 mt-1 block">1 day ago</span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <div class="bg-unalon-900 rounded-2xl rounded-br-lg p-3 max-w-xs">
+                        <p class="text-sm text-white">Same here! Great meeting everyone today 😊</p>
+                        <span class="text-xs text-gray-300 mt-1 block">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Message Input -->
+    <footer class="bg-unalon-100 border-t border-unalon-300 p-4">
+        <div class="flex items-center space-x-2">
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200">
+                <span class="material-icons">add</span>
+            </button>
+            <div class="flex-grow">
+                <input type="text" placeholder="Type a message..." class="w-full bg-unalon-50 rounded-full px-4 py-2 border border-unalon-300 focus:outline-none focus:border-unalon-900 text-sm">
+            </div>
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200">
+                <span class="material-icons">send</span>
+            </button>
+        </div>
+    </footer>
+</div>
+
+<!-- Profile Page -->
+<div id="profilePage" class="page max-w-md mx-auto bg-white relative min-h-screen flex flex-col shadow-lg rounded-xl" style='font-family: "Inter", "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <header class="flex items-center bg-white p-4 pb-2 justify-between sticky top-0 z-20">
+        <div class="w-12"></div>
+        <a href="#" class="flex w-12 items-center justify-end">
+            <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-black gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-black hover:text-white transition-colors duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+                </svg>
+            </button>
+        </a>
+    </header>
+
+    <main class="flex-grow overflow-y-auto pb-20 bg-white">
+        <section class="flex p-4 @container">
+            <div class="flex w-full flex-col gap-4 items-center">
+                <div class="flex gap-4 flex-col items-center">
+                    <!-- Profile photo using urban lifestyle image -->
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 shadow-md" style='background-image: url("https://pixabay.com/get/g54a46caefd8a12fdb2e2849913fea60d9f20c0fcecd543764cb51306abe67f0779723c3453f3728d4a96e00ea2999b94f8d337ca3e9446f76cfc31abcbde2062_1280.jpg");'></div>
+                    <div class="flex flex-col items-center justify-center">
+                        <p class="text-black text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">Ethan</p>
+                        <p class="text-black text-base font-normal leading-normal text-center">24, San Francisco</p>
+                        <div class="mt-2 px-4 py-1 bg-black text-white rounded-full shadow-md flex items-center gap-1">
+                            <span class="material-icons text-sm">star</span>
+                            <span class="text-sm font-semibold">Unalon Score: 85</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-4 pb-4">
+            <h3 class="text-black text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4">Interests</h3>
+            <div class="flex gap-3 flex-wrap">
+                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm">
+                    <p class="text-sm font-medium leading-normal">Hiking</p>
+                </div>
+                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm">
+                    <p class="text-sm font-medium leading-normal">Photography</p>
+                </div>
+                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm">
+                    <p class="text-sm font-medium leading-normal">Reading</p>
+                </div>
+                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm">
+                    <p class="text-sm font-medium leading-normal">Cooking</p>
+                </div>
+                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm">
+                    <p class="text-sm font-medium leading-normal">Travel</p>
+                </div>
+                <button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black font-bold hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                    </svg>
+                    <p class="text-sm font-medium leading-normal">Add</p>
+                </button>
+            </div>
+        </section>
+
+        <section class="px-4 pb-4">
+            <h3 class="text-black text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4">Favorite Quote</h3>
+            <p class="text-black text-base font-normal leading-normal pt-1">"The only way to do great work is to love what you do."</p>
+        </section>
+
+        <section class="pb-4">
+            <h3 class="text-black text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Linked Playlists</h3>
+            <div class="flex overflow-x-auto scrollbar-hide">
+                <div class="flex items-stretch p-4 gap-3">
+                    <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col" style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Ocean+Chill");'></div>
+                        <p class="text-black text-base font-medium leading-normal">Chill Vibes</p>
+                    </div>
+                    <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col" style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Mountain+Road");'></div>
+                        <p class="text-black text-base font-medium leading-normal">Road Trip</p>
+                    </div>
+                    <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col" style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Gym+Beats");'></div>
+                        <p class="text-black text-base font-medium leading-normal">Workout Mix</p>
+                    </div>
+                    <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col" style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Study+Focus");'></div>
+                        <p class="text-black text-base font-medium leading-normal">Focus Beats</p>
+                    </div>
+                    <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col" style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Smooth+Jazz");'></div>
+                        <p class="text-black text-base font-medium leading-normal">Relax Jazz</p>
+                    </div>
+                    <button class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 items-center justify-center bg-white text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" fill="currentColor" viewBox="0 0 256 256">
+                            <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                        </svg>
+                        <p class="text-base font-medium leading-normal">Add Playlist</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-4 pb-4">
+            <h3 class="text-black text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4">Activity History</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Social activities from activity history -->
+                <div class="flex flex-col gap-3 rounded-lg bg-white border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <!-- Social gathering -->
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600");'></div>
+                    <p class="text-black text-sm font-medium leading-normal">Wine Tasting</p>
+                    <p class="text-black text-xs font-normal leading-normal opacity-60">Last week</p>
+                </div>
+                <div class="flex flex-col gap-3 rounded-lg bg-white border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <!-- Outdoor activity -->
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600");'></div>
+                    <p class="text-black text-sm font-medium leading-normal">Group Hike</p>
+                    <p class="text-black text-xs font-normal leading-normal opacity-60">2 weeks ago</p>
+                </div>
+                <div class="flex flex-col gap-3 rounded-lg bg-white border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <!-- Urban lifestyle activity -->
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600");'></div>
+                    <p class="text-black text-sm font-medium leading-normal">Photo Walk</p>
+                    <p class="text-black text-xs font-normal leading-normal opacity-60">3 weeks ago</p>
+                </div>
+                <div class="flex flex-col gap-3 rounded-lg bg-white border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <!-- People meeting for coffee -->
+                    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600");'></div>
+                    <p class="text-black text-sm font-medium leading-normal">Coffee Meetup</p>
+                    <p class="text-black text-xs font-normal leading-normal opacity-60">1 month ago</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-200 z-10">
+        <div class="flex justify-around items-center py-2">
+            <a onclick="showHome()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-gray-600 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 active:scale-95 cursor-pointer">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a onclick="showMyPlans()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-gray-600 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 active:scale-95 cursor-pointer">
+                <span class="material-icons">event_note</span>
+                <span class="text-xs mt-1">My Plans</span>
+            </a>
+            <a onclick="showCreate()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-gray-600 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 active:scale-95 cursor-pointer">
+                <span class="material-icons">add_circle_outline</span>
+                <span class="text-xs mt-1">Create</span>
+            </a>
+            <a onclick="showChat()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-gray-600 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 active:scale-95 cursor-pointer">
+                <span class="material-icons">chat_bubble_outline</span>
+                <span class="text-xs mt-1">Chat</span>
+            </a>
+            <a onclick="showProfile()" class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-gray-100 text-gray-700 font-bold shadow-md transform scale-105 cursor-pointer">
+                <span class="material-icons">person_outline</span>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Navigation functions
+    function showHome() {
+        hideAllPages();
+        document.getElementById('homePage').classList.add('active');
+        updateNavigation('home');
+    }
+
+    function showMyPlans() {
+        hideAllPages();
+        document.getElementById('myPlansPage').classList.add('active');
+        updateNavigation('plans');
+    }
+
+    function showCreate() {
+        hideAllPages();
+        document.getElementById('createPage').classList.add('active');
+        updateNavigation('create');
+    }
+
+    function showChat() {
+        hideAllPages();
+        document.getElementById('chatPage').classList.add('active');
+        updateNavigation('chat');
+    }
+
+    function showProfile() {
+        hideAllPages();
+        document.getElementById('profilePage').classList.add('active');
+        updateNavigation('profile');
+    }
+
+    function hideAllPages() {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => page.classList.remove('active'));
+    }
+
+    function updateNavigation(activePage) {
+        // Reset all navigation items
+        const navItems = document.querySelectorAll('footer a');
+        navItems.forEach(item => {
+            item.className = 'flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer';
+        });
+
+        // Set active state based on current page
+        const pageMapping = {
+            'home': 0,
+            'plans': 1,
+            'create': 2,
+            'chat': 3,
+            'profile': 4
+        };
+
+        const activeIndex = pageMapping[activePage];
+        if (activeIndex !== undefined) {
+            const activeNav = document.querySelectorAll('footer a')[activeIndex];
+            if (activeNav) {
+                activeNav.className = 'flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-unalon-200 text-unalon-700 font-bold shadow-md transform scale-105 cursor-pointer';
+            }
+        }
+    }
+
+    // Chat conversation functions
+    function openChatConversation(userName) {
+        hideAllPages();
+        document.getElementById('chatConversationPage').classList.add('active');
+        
+        // Update conversation header
+        document.getElementById('conversationName').textContent = userName;
+        
+        // Set avatar and show appropriate messages
+        const avatarElement = document.getElementById('conversationAvatar');
+        const messagesContainer = document.getElementById('messagesContainer');
+        
+        // Hide all conversation messages
+        const allMessages = document.querySelectorAll('.conversation-messages');
+        allMessages.forEach(msg => msg.classList.add('hidden'));
+        
+        // Show specific conversation messages and set avatar
+        const userKey = userName.toLowerCase().replace(' ', '');
+        const messageElement = document.getElementById(userKey + 'Messages');
+        if (messageElement) {
+            messageElement.classList.remove('hidden');
+        }
+        
+        // Set avatar based on user
+        const avatarMap = {
+            'Sarah': 'https://images.unsplash.com/photo-1494790108755-2616b612b3f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400',
+            'Alex': 'https://images.unsplash.com/photo-1507003211169-0a3dd782dab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400',
+            'Maya': 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400',
+            'Emma': 'https://images.unsplash.com/photo-1502810365585-56ffa361fdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400',
+            'Coffee Group': 'https://placehold.co/40x40/000000/FFFFFF?text=CG'
+        };
+        
+        avatarElement.src = avatarMap[userName] || 'https://placehold.co/40x40/000000/FFFFFF?text=U';
+    }
+
+    // Tab switching for My Plans
+    function initializeMyPlansPage() {
+        const upcomingTab = document.getElementById('upcomingTab');
+        const pastTab = document.getElementById('pastTab');
+        const upcomingContent = document.getElementById('upcomingContent');
+        const pastContent = document.getElementById('pastContent');
+
+        if (upcomingTab && pastTab) {
+            upcomingTab.addEventListener('click', function() {
+                upcomingTab.className = 'flex-1 py-3 text-center font-semibold text-unalon-900 border-b-2 border-unalon-900 transition-colors duration-200';
+                pastTab.className = 'flex-1 py-3 text-center font-semibold text-unalon-700 border-b-2 border-transparent hover:border-unalon-300 transition-colors duration-200';
+                upcomingContent.classList.remove('hidden');
+                pastContent.classList.add('hidden');
+            });
+
+            pastTab.addEventListener('click', function() {
+                pastTab.className = 'flex-1 py-3 text-center font-semibold text-unalon-900 border-b-2 border-unalon-900 transition-colors duration-200';
+                upcomingTab.className = 'flex-1 py-3 text-center font-semibold text-unalon-700 border-b-2 border-transparent hover:border-unalon-300 transition-colors duration-200';
+                pastContent.classList.remove('hidden');
+                upcomingContent.classList.add('hidden');
+            });
+        }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeMyPlansPage();
+        
+        // Add vibe selection functionality
+        const vibeOptions = document.querySelectorAll('.vibe-option');
+        vibeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Toggle selected state
+                this.classList.toggle('vibe-selected');
+            });
+        });
+
+        // Add radio button functionality for visibility and accepting requests
+        const radioLabels = document.querySelectorAll('.visibility-label, .accepting-requests-label');
+        radioLabels.forEach(label => {
+            label.addEventListener('click', function() {
+                const input = this.querySelector('input[type="radio"]');
+                const name = input.name;
+                
+                // Remove selected class from all labels with same name
+                document.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                    radio.closest('label').classList.remove('radio-selected');
+                });
+                
+                // Add selected class to clicked label
+                this.classList.add('radio-selected');
+                input.checked = true;
+            });
+        });
+    });
+
+    // TODO: Implement business logic, API calls, and state management for:
+    // - User authentication flow
+    // - Activity creation and management
+    // - Real-time chat messaging
+    // - User profile updates
+    // - Activity joining/leaving
+    // - Push notifications
+    // - Image upload and AI generation
+    // - Location services and mapping
+    // - Search and filtering
+    // - Social features and friend connections
+</script>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Unalon</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"> <!-- Added Playfair Display font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <style>
+        html {
+            scroll-behavior: smooth; /* Added for smoother scrolling */
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-smoothing: grayscale;
+            min-height: max(884px, 100dvh); /* Ensure body takes at least 884px or 100% of viewport height */
+            background-color: #FFFFFF; /* Overall body background color - unalon-50 */
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom scrollbar hide for overflow-x-auto */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Style for Unalon text */
+        .unalon-logo {
+            font-family: 'Playfair Display', serif; /* Applied Playfair Display */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unalon: {
+                            50: '#FFFFFF',   // Pure White - background
+                            100: '#FFFFFF',  // Pure White
+                            200: '#FFFFFF',  // Pure White
+                            300: '#BBBBBB',  // Light Gray for borders
+                            400: '#000000',  // Pure Black - secondary buttons/icons
+                            500: '#000000',  // Pure Black - primary buttons and headings
+                            600: '#000000',  // Pure Black - hover states, CTA
+                            700: '#000000',  // Pure Black - darker text/icons
+                            800: '#000000',  // Pure Black - outlines/inactive text
+                            900: '#000000'   // Pure Black - darkest text
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-unalon-50">
+<div class="max-w-md mx-auto bg-unalon-100 relative min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="flex justify-between items-center p-4 border-b border-unalon-300 bg-unalon-100">
+        <span class="font-black text-2xl text-unalon-900 unalon-logo">unalon</span>
+        <div class="flex items-center space-x-4">
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">search</span>
+            </button>
+            <button class="text-unalon-700 hover:text-unalon-400 transition-colors duration-200 active:scale-95 transition-transform duration-100 ease-out">
+                <span class="material-icons">notifications_none</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="p-4 flex-grow overflow-y-auto bg-unalon-100">
+        <!-- Filter Buttons -->
+        <div class="flex space-x-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+            <button class="bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">Location</button>
+            <button class="bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">Time</button>
+            <button class="bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">Activity</button>
+            <!-- Moved Sort by button here -->
+            <button class="flex items-center space-x-1 bg-unalon-200 text-unalon-700 px-4 py-2 rounded-full whitespace-nowrap hover:bg-unalon-300 hover:text-unalon-900 transition-colors duration-200 active:bg-unalon-400 active:scale-95 transition-transform duration-100 ease-out border border-unalon-300">
+                <span class="material-icons text-unalon-700">sort</span>
+                <span class="font-medium">Sort by</span>
+                <span class="material-icons text-unalon-700">expand_more</span>
+            </button>
+            <!-- Add more filter buttons as needed -->
+        </div>
+
+        <!-- Activity Cards Section -->
+        <div class="space-y-6" id="activity-cards-container">
+            <!-- Activity Card 1: Reading at The Daily Grind -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Reading at The Daily Grind</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">☕️ Cozy Reads & Coffee: Your Perfect Afternoon Escape!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Today, 3:00 PM · The Daily Grind Coffee Shop</p>
+                    </div>
+                    <img alt="A person reading a book in a cozy cafe." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1511920170104-daa98f68f26b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Cafe';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Chill</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Quiet Company</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Olivia" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=O';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Olivia</p>
+                            <p class="text-sm text-unalon-800">2 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a woman with long brown hair." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=A1';"/>
+                        <img alt="Avatar of a man with short brown hair and glasses." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a3dd782dab4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=A2';"/>
+                        <img alt="Avatar of a woman with reddish-brown hair." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=A3';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <!-- Activity Card 2: Study Session at the Library -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Study Session at the Library</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">📚 Ace Your Exams: Join Our Productive Study Squad!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Today, 4:00 PM · Central Library</p>
+                    </div>
+                    <img alt="People studying at a library table." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1521737711867-e3b97375253b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Library';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Productive</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Talkative</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Ethan" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=E';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Ethan</p>
+                            <p class="text-sm text-unalon-800">3 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a man with dark hair." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=A4';"/>
+                        <img alt="Avatar of a woman with brown hair in a ponytail." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1542155011-d00160037566?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=A5';"/>
+                        <img alt="Avatar of a man with short blonde hair." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=A6';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <!-- Activity Card 3: Morning Run in the Park -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Morning Run</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">🏃‍♀️ Rise & Shine: Energizing Morning Run in the Park!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Tomorrow, 7:00 AM · City Park</p>
+                    </div>
+                    <img alt="A person running on a park path." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1552674605-db6ffd4ed5b7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Park Run';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Active</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Fitness</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Alex" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=A';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Alex</p>
+                            <p class="text-sm text-unalon-800">4 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1546961342-ea58823522c4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P1';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P2';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <!-- Activity Card 4: Evening Yoga Session -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Yoga & Meditation</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">🧘‍♀️ Find Your Zen: Relaxing Evening Yoga for All Levels!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Tomorrow, 6:00 PM · Community Center</p>
+                    </div>
+                    <img alt="A group doing yoga outdoors." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1591291629853-3c99a6132470?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Yoga';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Relaxing</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Mindfulness</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Sarah" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1531746020795-81c2247fd159?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=S';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Sarah</p>
+                            <p class="text-sm text-unalon-800">5 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P3';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a3dd782dab4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P4';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P5';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <!-- Activity Card 5: Board Game Night -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Game Night</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">🎲 Game On! Epic Board Game Night Awaits!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Friday, 7:30 PM · Local Game Cafe</p>
+                    </div>
+                    <img alt="People playing board games." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1563986768605-da4d1488e519?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Board Games';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Social</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Strategy</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Mike" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a3dd782dab4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=M';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Mike</p>
+                            <p class="text-sm text-unalon-800">6 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1546961342-ea58823522c4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P6';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P7';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P8';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <!-- Activity Card 6: Photography Walk -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Photography</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">📸 Capture the City: A Scenic Photography Adventure!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Saturday, 10:00 AM · Downtown District</p>
+                    </div>
+                    <img alt="A person taking a photo of a cityscape." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1520390138845-fd2d229dd553?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Camera';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Creative</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Exploration</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Chloe" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=C';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Chloe</p>
+                            <p class="text-sm text-unalon-800">3 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a3dd782dab4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P9';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P10';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+
+            <!-- Activity Card 7: Cooking Class: Italian Cuisine -->
+            <div class="bg-unalon-50 rounded-2xl shadow-sm p-4 border border-unalon-300 hover:shadow-md transition-shadow duration-200">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <!-- Main Heading -->
+                        <h2 class="text-lg font-bold text-unalon-900">Cooking Class</h2>
+                        <!-- Description, now smaller and not bold -->
+                        <p class="text-sm text-unalon-800 mb-1">🍝 Mamma Mia! Master Italian Cooking with Chef Leo!</p>
+                        <p class="text-sm text-unalon-700 mt-1">Sunday, 5:00 PM · Culinary Studio</p>
+                    </div>
+                    <img alt="Someone cooking Italian pasta." class="w-24 h-24 rounded-xl object-cover ml-4 flex-shrink-0" src="https://images.unsplash.com/photo-1590487988256-9993ad5f0967?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/96x96/E0E0E0/616161?text=Cooking';"/>
+                </div>
+                <div class="flex space-x-2 my-4 overflow-x-auto scrollbar-hide">
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Foodie</span>
+                    <span class="bg-unalon-100 text-unalon-700 text-sm px-3 py-1 rounded-full">Learning</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img alt="Portrait of Chef Leo" class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E0E0E0/616161?text=L';"/>
+                        <div class="ml-3">
+                            <p class="font-semibold text-unalon-900">Hosted by Chef Leo</p>
+                            <p class="text-sm text-unalon-800">8 spots open</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2">
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P11';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1542155011-d00160037566?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P12';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P13';"/>
+                        <img alt="Avatar of a person." class="w-6 h-6 rounded-full border-2 border-unalon-50 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" onerror="this.onerror=null;this.src='https://placehold.co/24x24/E0E0E0/616161?text=P14';"/>
+                    </div>
+                </div>
+                <button class="w-full bg-unalon-400 text-white font-semibold py-3 rounded-xl mt-4 hover:bg-unalon-500 transition-colors duration-200 active:bg-unalon-600 active:scale-95 transition-transform duration-100 ease-out">Request to Join</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fixed Bottom Navigation -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-unalon-100 border-t border-unalon-300 z-10">
+        <div class="flex justify-around items-center py-2">
+            <!-- Home (Active) -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-unalon-200 text-unalon-700 font-bold shadow-md transform scale-105" href="#">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <!-- My Plans -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">event_note</span>
+                <span class="text-xs mt-1">My Plans</span>
+            </a>
+            <!-- Create -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">add_circle_outline</span>
+                <span class="text-xs mt-1">Create</span>
+            </a>
+            <!-- Chats -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">chat_bubble_outline</span>
+                <span class="text-xs mt-1">Chats</span>
+            </a>
+            <!-- Profile -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-unalon-700 hover:bg-unalon-200 hover:text-unalon-900 active:bg-unalon-300 active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">person_outline</span>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

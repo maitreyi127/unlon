@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 0%);
+  --muted: hsl(0, 0%, 96%);
+  --muted-foreground: hsl(0, 0%, 53%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 0%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 0%);
+  --border: hsl(0, 0%, 73%);
+  --input: hsl(0, 0%, 90%);
+  --primary: hsl(0, 0%, 0%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(0, 0%, 96%);
+  --secondary-foreground: hsl(0, 0%, 0%);
+  --accent: hsl(0, 0%, 96%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(0, 0%, 0%);
+  --radius: 1rem;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 15%);
+  --muted-foreground: hsl(0, 0%, 65%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(0, 0%, 0%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 27%);
+  --input: hsl(0, 0%, 15%);
+  --primary: hsl(0, 0%, 100%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 15%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 15%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(0, 0%, 83%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Roboto', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom styles for Unalon */
+.unalon-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+}
+
+/* Modern Unified Color Theme - Soft Pastels */
+/* Enhanced Transitions and Animations - More Fluid and Uniform */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth button interactions */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth modal animations */
+.modal-enter {
+  animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced card interactions */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* Smooth fade transitions */
+.fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Staggered animations for lists */
+.stagger-item {
+  animation: staggerFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes staggerFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth scale transitions */
+.scale-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Enhanced focus states */
+.focus-ring {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+/* Smooth color transitions */
+.color-transition {
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom slider styling */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-track {
+  background: hsl(220, 90%, 92%);
+  height: 8px;
+  border-radius: 4px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: hsl(280, 50%, 60%);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: hsl(280, 60%, 70%);
+  transform: scale(1.1);
+}
+
+.slider::-moz-range-track {
+  background: hsl(220, 90%, 92%);
+  height: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.slider::-moz-range-thumb {
+  background: hsl(280, 50%, 60%);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  background: hsl(280, 60%, 70%);
+  transform: scale(1.1);
+}
+
+/* Modern Unified Color Theme - Soft Pastels */
+.bg-unalon-50 { background-color: hsl(220, 100%, 98%); }
+.bg-unalon-100 { background-color: hsl(220, 100%, 96%); }
+.bg-unalon-200 { background-color: hsl(220, 90%, 92%); }
+.bg-unalon-300 { background-color: hsl(220, 80%, 85%); }
+.bg-unalon-400 { background-color: hsl(220, 70%, 75%); }
+.bg-unalon-500 { background-color: hsl(220, 60%, 65%); }
+.bg-unalon-600 { background-color: hsl(220, 50%, 55%); }
+.bg-unalon-700 { background-color: hsl(220, 40%, 45%); }
+.bg-unalon-800 { background-color: hsl(220, 30%, 35%); }
+.bg-unalon-900 { background-color: hsl(220, 20%, 25%); }
+
+.bg-unalon-accent-50 { background-color: hsl(280, 100%, 96%); }
+.bg-unalon-accent-100 { background-color: hsl(280, 90%, 92%); }
+.bg-unalon-accent-200 { background-color: hsl(280, 80%, 88%); }
+.bg-unalon-accent-300 { background-color: hsl(280, 70%, 80%); }
+.bg-unalon-accent-400 { background-color: hsl(280, 60%, 70%); }
+.bg-unalon-accent-500 { background-color: hsl(280, 50%, 60%); }
+.bg-unalon-accent-600 { background-color: hsl(280, 40%, 50%); }
+
+.text-unalon-50 { color: hsl(220, 100%, 98%); }
+.text-unalon-100 { color: hsl(220, 100%, 96%); }
+.text-unalon-200 { color: hsl(220, 90%, 92%); }
+.text-unalon-300 { color: hsl(220, 80%, 85%); }
+.text-unalon-400 { color: hsl(220, 70%, 75%); }
+.text-unalon-500 { color: hsl(220, 60%, 65%); }
+.text-unalon-600 { color: hsl(220, 50%, 55%); }
+.text-unalon-700 { color: hsl(220, 40%, 45%); }
+.text-unalon-800 { color: hsl(220, 30%, 35%); }
+.text-unalon-900 { color: hsl(220, 20%, 25%); }
+
+.text-unalon-accent-50 { color: hsl(280, 100%, 96%); }
+.text-unalon-accent-100 { color: hsl(280, 90%, 92%); }
+.text-unalon-accent-200 { color: hsl(280, 80%, 88%); }
+.text-unalon-accent-300 { color: hsl(280, 70%, 80%); }
+.text-unalon-accent-400 { color: hsl(280, 60%, 70%); }
+.text-unalon-accent-500 { color: hsl(280, 50%, 60%); }
+.text-unalon-accent-600 { color: hsl(280, 40%, 50%); }
+
+.border-unalon-100 { border-color: hsl(220, 100%, 96%); }
+.border-unalon-200 { border-color: hsl(220, 90%, 92%); }
+.border-unalon-300 { border-color: hsl(220, 80%, 85%); }
+.border-unalon-400 { border-color: hsl(220, 70%, 75%); }
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.button-effect {
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.button-effect:hover {
+  opacity: 0.8;
+}
+
+.button-effect:active {
+  opacity: 0.6;
+  transform: scale(0.98);
+}
+
+

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <!-- Preconnect to Google Fonts for performance -->
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800"
+    />
+    <!-- Load Inter font, along with Plus Jakarta Sans and Noto Sans -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <title>Unalon - Profile</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <!-- Tailwind CSS CDN for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      /* Custom styles for rounded corners on images that are not explicitly handled by Tailwind */
+      img {
+        border-radius: 0.5rem; /* Equivalent to rounded-lg */
+      }
+      /* Custom scrollbar hide for overflow-x-auto and overflow-y-auto */
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+      /* Material Icons specific styling */
+      .material-icons {
+          font-family: 'Material Icons';
+          font-weight: normal;
+          font-style: normal;
+          font-size: 24px;
+          line-height: 1;
+          letter-spacing: normal;
+          text-transform: none;
+          display: inline-block;
+          white-space: nowrap;
+          word-wrap: normal;
+          direction: ltr;
+          -webkit-font-feature-settings: 'liga';
+          -webkit-font-smoothing: antialiased;
+      }
+    </style>
+    <script>
+      // Tailwind CSS configuration with a pure black and white color palette
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Defining a pure black and white palette
+              'black': '#000000',
+              'white': '#FFFFFF',
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <!-- Applying black and white colors to the body and main containers -->
+  <body class="bg-white">
+    <!-- Main application container, mimicking the homepage's central card layout -->
+    <div
+      class="max-w-md mx-auto bg-white relative min-h-screen flex flex-col shadow-lg rounded-xl"
+      style='font-family: "Inter", "Plus Jakarta Sans", "Noto Sans", sans-serif;'
+    >
+      <!-- Header Section (top navigation) -->
+      <header class="flex items-center bg-white p-4 pb-2 justify-between sticky top-0 z-20">
+        <!-- Placeholder for removed back button to maintain spacing if needed, or remove entirely if not -->
+        <div class="w-12"></div>
+        <!-- Settings/Menu button (three lines) -->
+        <a href="#" class="flex w-12 items-center justify-end">
+          <button
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-black gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0 hover:bg-black hover:text-white transition-colors duration-200"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+            </svg>
+          </button>
+        </a>
+      </header>
+
+      <!-- Main Content Area - Scrollable -->
+      <main class="flex-grow overflow-y-auto pb-20 bg-white">
+        <!-- Profile header section with avatar and name -->
+        <section class="flex p-4 @container">
+          <div class="flex w-full flex-col gap-4 items-center">
+            <div class="flex gap-4 flex-col items-center">
+              <!-- Profile avatar -->
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 shadow-md"
+                style='background-image: url("https://placehold.co/128x128/000000/FFFFFF?text=Profile");'
+              ></div>
+              <!-- User name, location, and Unalon Score -->
+              <div class="flex flex-col items-center justify-center">
+                <p
+                  class="text-black text-[22px] font-bold leading-tight tracking-[-0.015em] text-center"
+                >
+                  Ethan
+                </p>
+                <p class="text-black text-base font-normal leading-normal text-center">
+                  24, San Francisco
+                </p>
+                <!-- Unalon Score -->
+                <div class="mt-2 px-4 py-1 bg-black text-white rounded-full shadow-md flex items-center gap-1">
+                    <span class="material-icons text-sm">star</span>
+                    <span class="text-sm font-semibold">Unalon Score: 85</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interests section -->
+        <section class="px-4 pb-4">
+          <h3
+            class="text-black text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4"
+          >
+            Interests
+          </h3>
+          <div class="flex gap-3 flex-wrap">
+            <!-- Interest tags -->
+            <div
+              class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm"
+            >
+              <p class="text-sm font-medium leading-normal">Hiking</p>
+            </div>
+            <div
+              class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm"
+            >
+              <p class="text-sm font-medium leading-normal">Photography</p>
+            </div>
+            <div
+              class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm"
+            >
+              <p class="text-sm font-medium leading-normal">Reading</p>
+            </div>
+            <div
+              class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm"
+            >
+              <p class="text-sm font-medium leading-normal">Cooking</p>
+            </div>
+            <div
+              class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm"
+            >
+              <p class="text-sm font-medium leading-normal">Travel</p>
+            </div>
+            <!-- Plus button for Interests -->
+            <button
+              class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white px-4 text-black font-bold hover:bg-black hover:text-white transition-colors duration-200 active:scale-95 shadow-sm"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"
+                ></path>
+              </svg>
+              <p class="text-sm font-medium leading-normal">Add</p>
+            </button>
+          </div>
+        </section>
+
+        <!-- Favorite Quote section -->
+        <section class="px-4 pb-4">
+          <h3
+            class="text-black text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4"
+          >
+            Favorite Quote
+          </h3>
+          <p class="text-black text-base font-normal leading-normal pt-1">
+            "The only way to do great work is to love what you do."
+          </p>
+        </section>
+
+        <!-- Linked Playlists section -->
+        <section class="pb-4">
+          <h3
+            class="text-black text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4"
+          >
+            Linked Playlists
+          </h3>
+          <div
+            class="flex overflow-x-auto scrollbar-hide"
+          >
+            <div class="flex items-stretch p-4 gap-3">
+              <!-- Playlist item 1 -->
+              <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col"
+                  style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Ocean+Chill");'
+                ></div>
+                <p class="text-black text-base font-medium leading-normal">Chill Vibes</p>
+              </div>
+              <!-- Playlist item 2 -->
+              <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col"
+                  style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Mountain+Road");'
+                ></div>
+                <p class="text-black text-base font-medium leading-normal">Road Trip</p>
+              </div>
+              <!-- Playlist item 3 -->
+              <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col"
+                  style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Gym+Beats");'
+                ></div>
+                <p class="text-black text-base font-medium leading-normal">Workout Mix</p>
+              </div>
+              <!-- Playlist item 4 -->
+              <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col"
+                  style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Study+Focus");'
+                ></div>
+                <p class="text-black text-base font-medium leading-normal">Focus Beats</p>
+              </div>
+              <!-- Playlist item 5 -->
+              <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 bg-white p-2 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col"
+                  style='background-image: url("https://placehold.co/160x160/000000/ffffff?text=Smooth+Jazz");'
+                ></div>
+                <p class="text-black text-base font-medium leading-normal">Relax Jazz</p>
+              </div>
+              <!-- Plus button for Playlists -->
+              <button
+                class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-40 items-center justify-center bg-white text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48px"
+                  height="48px"
+                  fill="currentColor"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"
+                  ></path>
+                </svg>
+                <p class="text-base font-medium leading-normal">Add Playlist</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Favorite Places section -->
+        <section class="px-4 pb-4">
+          <h3
+            class="text-black text-lg font-bold leading-tight tracking-[-0.015em] pb-2 pt-4"
+          >
+            Favorite Places
+          </h3>
+          <!-- Favorite Place item 1 -->
+          <div class="flex items-center gap-4 bg-white px-4 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div
+              class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg h-14 w-fit"
+              style='background-image: url("https://placehold.co/80x56/000000/ffffff?text=Cozy+Cafe");'
+            ></div>
+            <div class="flex flex-col justify-center">
+              <p class="text-black text-base font-medium leading-normal line-clamp-1">
+                The Daily Grind
+              </p>
+              <p class="text-black text-sm font-normal leading-normal line-clamp-2">
+                Coffee Shop
+              </p>
+            </div>
+          </div>
+          <!-- Favorite Place item 2 -->
+          <div class="flex items-center gap-4 bg-white px-4 py-3 rounded-lg mt-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div
+              class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg h-14 w-fit"
+              style='background-image: url("https://placehold.co/80x56/000000/ffffff?text=Green+Park");'
+            ></div>
+            <div class="flex flex-col justify-center">
+              <p class="text-black text-base font-medium leading-normal line-clamp-1">
+                Golden Gate Park
+              </p>
+              <p class="text-black text-sm font-normal leading-normal line-clamp-2">Park</p>
+            </div>
+          </div>
+          <!-- Favorite Place item 3 -->
+          <div class="flex items-center gap-4 bg-white px-4 py-3 rounded-lg mt-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div
+              class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg h-14 w-fit"
+              style='background-image: url("https://placehold.co/80x56/000000/ffffff?text=Sunset+Beach");'
+            ></div>
+            <div class="flex flex-col justify-center">
+              <p class="text-black text-base font-medium leading-normal line-clamp-1">
+                Ocean Beach
+              </p>
+              <p class="text-black text-sm font-normal leading-normal line-clamp-2">Beach</p>
+            </div>
+          </div>
+          <!-- Favorite Place item 4 -->
+          <div class="flex items-center gap-4 bg-white px-4 py-3 rounded-lg mt-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div
+              class="bg-center bg-no-repeat aspect-video bg-cover rounded-lg h-14 w-fit"
+              style='background-image: url("https://placehold.co/80x56/000000/ffffff?text=Art+Gallery");'
+            ></div>
+            <div class="flex flex-col justify-center">
+              <p class="text-black text-base font-medium leading-normal line-clamp-1">
+                SFMOMA
+              </p>
+              <p class="text-black text-sm font-normal leading-normal line-clamp-2">Museum</p>
+            </div>
+          </div>
+          <!-- Plus button for Favorite Places -->
+          <button
+            class="flex items-center justify-center gap-4 bg-white px-4 py-3 rounded-lg w-full mt-3 text-black hover:bg-black hover:text-white transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24px"
+              height="24px"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+            >
+              <path
+                d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"
+              ></path>
+            </svg>
+            <p class="text-base font-medium leading-normal">Add Favorite Place</p>
+          </button>
+        </section>
+      </main>
+
+      <!-- Fixed Bottom Navigation -->
+      <footer class="fixed bottom-0 left-0 right-0 w-full max-w-md mx-auto bg-white shadow-md z-10">
+        <div class="flex justify-around items-center py-2">
+            <!-- Home -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-black hover:bg-black hover:text-white active:bg-black active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">home</span>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <!-- My Plans -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-black hover:bg-black hover:text-white active:bg-black active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">event_note</span>
+                <span class="text-xs mt-1">My Plans</span>
+            </a>
+            <!-- Create -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-black hover:bg-black hover:text-white active:bg-black active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">add_circle_outline</span>
+                <span class="text-xs mt-1">Create</span>
+            </a>
+            <!-- Chats -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out text-black hover:bg-black hover:text-white active:bg-black active:scale-95 hover:-translate-y-1 shadow-sm hover:shadow-md" href="#">
+                <span class="material-icons">chat_bubble_outline</span>
+                <span class="text-xs mt-1">Chats</span>
+            </a>
+            <!-- Profile (Active) -->
+            <a class="flex flex-col items-center p-2 rounded-lg transition-all duration-200 ease-out bg-black text-white font-bold shadow-md transform scale-105" href="#">
+                <span class="material-icons">person</span>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

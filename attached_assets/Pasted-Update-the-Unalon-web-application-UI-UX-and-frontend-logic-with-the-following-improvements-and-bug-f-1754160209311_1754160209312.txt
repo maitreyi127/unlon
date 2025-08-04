@@ -1,0 +1,129 @@
+Update the Unalon web application UI/UX and frontend logic with the following improvements and bug fixes. Use modular, reusable components where possible and maintain consistency with the existing design system (minimalist, pastel, soft UI).
+
+✅ 1. Ad Integration (Remove from Homepage, Add to Notifications)
+Remove all ad banners or blocks from the homepage feed.
+
+Inject ad content as styled notifications in the /notifications page only.
+
+Style ads like user activity (e.g., "Anaya just visited Blue Tokai ☕").
+
+Add a "Sponsored" tag — subtle, small italic grey text or emoji like ✨.
+
+Use the same card style and layout as other notifications.
+
+Do not use colorful or jarring ad blocks.
+
+✅ 2. Search Bar Redesign
+Redesign the search bar component across the app to:
+
+Use rounded corners (border-radius: 12px)
+
+Add slight drop shadow or translucent blur background
+
+Embed a small magnifying glass icon inside the left
+
+Placeholder: "Search by name, interest, or location"
+
+Ensure responsiveness and padding looks balanced on all screen sizes
+
+✅ 3. My Plans Heading
+On the /myplans route, change the top header text from "Unalon" to "My Plans" to avoid double headings.
+
+Ensure page title and tab also reflect "My Plans" if dynamic routing is used.
+
+✅ 4. Auto-Accept Button Visibility Logic
+In the Create Event form:
+
+Hide the “Auto-Accept” toggle by default.
+
+Show it only after a number is entered in the “Number of Participants” input.
+
+Use an event listener on the input field to trigger a conditional render.
+
+Add fade-in animation (opacity + transform: translateY) for smoother UX.
+
+✅ 5. Create Event Modal
+Replace the existing full-page Create view with a centered modal popup.
+
+Remove all headers from this modal.
+
+Modal should have:
+
+A soft white or blurred background
+
+Padding, rounded edges, box-shadow
+
+Entrance animation (e.g., fade + scale)
+
+Ensure modal is closable with a × icon or click outside.
+
+✅ 6. Sponsored Places in Create Page
+In the Place selection dropdown (Create Event form):
+
+Prepend 2–3 hardcoded or API-tagged places marked as sponsored: true.
+
+Render these first in the dropdown with:
+
+A “Sponsored” label next to the name
+
+Custom style: small, italic, pastel-colored font or icon (e.g., 🌟)
+
+✅ 7. Profile Icon Navigation
+Remove the Profile tab/icon from the bottom dock (mobile nav).
+
+Add profile icon to the top-right corner, adjacent to the notifications bell.
+
+Ensure it is clickable and leads to the user's profile page (/profile).
+
+Match icon size and margin with nearby buttons for visual harmony.
+
+✅ 8. Request Button Behavior in Events
+For each event card:
+
+Default button text: "Request to Join"
+
+On first click:
+
+Change text to "Requested"
+
+Disable further clicks (either disable the button or make it non-interactive)
+
+Events should never show as “Requested” by default.
+
+✅ 9. Fix Non-Functional Buttons on Notifications Page
+Debug and fix all non-working buttons on /notifications.
+
+Accept, Reject, View, or similar buttons must trigger appropriate event handlers.
+
+If missing, add onClick handlers and link to backend routes or client-side state.
+
+Show feedback (e.g., toast, checkmark) after interaction.
+
+✅ 10. Enhanced Notifications with Friend Activity & Sponsored Content
+In the Notifications feed:
+
+Include styled notification cards for:
+
+Hangout requests from friends
+
+Confirmations or rejections
+
+Casual updates (e.g., “Priya is planning a study date 📚”)
+
+Sponsored places (like “Nukkad Cafe is trending!”)
+
+Ads should:
+
+Be written as real messages, not banners
+
+Include small CTA buttons like “Check it out” or “Bookmark”
+
+🧪 Notes:
+Ensure all animations are smooth (CSS transitions or Framer Motion if using React).
+
+Optimize for responsiveness (use flexbox/grid, media queries).
+
+Use component state and conditional rendering for dynamic logic.
+
+Make sure nothing breaks routing or existing login/session features.
+

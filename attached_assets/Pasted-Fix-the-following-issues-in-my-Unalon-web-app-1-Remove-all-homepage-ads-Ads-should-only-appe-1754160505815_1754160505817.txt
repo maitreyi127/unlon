@@ -1,0 +1,47 @@
+Fix the following issues in my Unalon web app:
+
+1. **Remove all homepage ads**. Ads should only appear inside the notifications page as styled notifications (not banner ads). Insert these ads between other notifs using the same notification component. Tag with “Sponsored” using small italic grey text or a subtle emoji (e.g., ✨).
+
+2. **Redesign the search bar**:
+   - Rounded corners
+   - Soft shadow or frosted glass effect
+   - Include a search icon on the left inside the input
+   - Placeholder: "Search by name, interest, or location"
+
+3. On the **/myplans** page, change the heading from "Unalon" to "My Plans" only.
+
+4. In the Create Event form:
+   - The "Auto Accept" toggle should not be visible initially.
+   - It should appear **only after** the user enters a number in the "Participants" field.
+   - Add a smooth fade-in when it becomes visible.
+
+5. Turn the "Create" screen into a **popup modal**:
+   - No top header
+   - Centered modal with rounded corners and soft box-shadow
+   - Blur/fade background when modal is open
+   - Close button at top-right or close on click outside
+
+6. In the "Select a place" dropdown:
+   - Add a few **sponsored locations** at the top of the list
+   - Label them "Sponsored" in a cool, minimal way (e.g., pastel font, small size)
+
+7. Move the profile icon to the top right corner (next to the notifications icon).
+   - Remove it from the bottom nav bar or dock
+
+8. Event cards should never show “Requested” by default.
+   - The "Request to Join" button should:
+     - Show “Requested” after the first click
+     - Be disabled or non-interactive after that (no toggle)
+
+9. **Fix broken buttons** on the `/notifications` page.
+   - Accept/reject/request/action buttons must trigger their intended events
+   - Add `onClick` handlers if missing
+
+10. In the notifications feed, mix in:
+   - Sponsored content (cafes, places) that looks like user activity
+   - Messages from friends ("Riya sent you a request", "Abhay wants to study at Roastery Coffee")
+   - Make ads look natural inside the feed, styled like other notifications
+
+Make sure all changes preserve responsiveness and work across mobile + desktop.
+Use Tailwind or CSS modules if the project uses them.
+Let me know if you need me to paste code — otherwise, do these changes directly.
